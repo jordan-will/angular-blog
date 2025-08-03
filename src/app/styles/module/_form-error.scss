@@ -1,0 +1,8 @@
+@use '../base/variables' as v;
+
+.form-error{
+  span{
+    font-size: 0.8rem;
+    color: v.$primary;
+  }
+}

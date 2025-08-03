@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { ImagePickerService } from './image-picker-service';
 import { provideZonelessChangeDetection } from '@angular/core';
 
-fdescribe('ImagePickerService', () => {
+describe('ImagePickerService', () => {
   let service: ImagePickerService;
 
   beforeEach(() => {

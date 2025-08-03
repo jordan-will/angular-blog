@@ -1,5 +1,1 @@
-export const PATH = {
-  users: 'users/',
-  posts: 'posts/',
-  comments: 'comments/',
-}
+export type PATH = 'users/' | 'posts/' | 'comments/';

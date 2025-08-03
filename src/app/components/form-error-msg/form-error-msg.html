@@ -1,0 +1,13 @@
+@if(control()?.invalid && (control()?.dirty || control()?.touched)){
+<div class="form-error">
+  @if(control()?.hasError('required')){
+  <span>This field is required</span>
+  }
+  @if(control()?.hasError('minlength')){
+  <span>Minimum length is {{control()?.getError('minlength')?.requiredLength }}</span>
+  }
+  @if(control()?.hasError('email')){
+  <span>Invalid email format</span>
+  }
+</div>
+}

@@ -19,7 +19,7 @@ class HostAvatarComponent {
   }
 }
 
-fdescribe('Avatar', () => {
+describe('Avatar', () => {
   let component: HostAvatarComponent;
   let fixture: ComponentFixture<HostAvatarComponent>;
   let mockImagePicker: jasmine.SpyObj<ImagePickerService>
