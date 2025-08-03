@@ -1,0 +1,31 @@
+@use './btn_icon' as btn-icon;
+
+.avatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+
+  .material-icons {
+    font-size: 6rem;
+  }
+
+  &__image {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: #666;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &__actions {
+    button {
+      @include btn-icon.btn-icon; 
+    }
+  }
+
+}

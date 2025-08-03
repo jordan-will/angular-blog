@@ -1,3 +1,16 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+export const routes: Routes = [
+  {
+    path:'',
+    redirectTo: '/sign-up',
+    pathMatch: 'full'
+  },
+  {
+    path: 'sign-up',
+    loadComponent: () => import('./pages/sign-up-page/sign-up-page').then(m => m.SignUpPage)
+  },
+  {
+    path: 'sign-in',
+    loadComponent: () => import('./pages/sign-in-page/sign-in-page').then(m => m.SignInPage)
+  }
+];
