@@ -12,7 +12,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
   gap: 0.5rem;
-
+  width: 100%;
   .material-icons {
     font-size: 1.2rem;
   }
@@ -82,5 +82,9 @@
 
   &--dark {
     @include button-variant(dark);
+  }
+
+  &--create-account{
+    margin: 0.5rem 0;
   }
 }

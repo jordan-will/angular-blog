@@ -1,11 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SignUpPage } from './sign-up-page';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { LocalStorage } from '@services/local-storage';
 import { Router } from '@angular/router';
 
-fdescribe('SignUpPage', () => {
+describe('SignUpPage', () => {
   let component: SignUpPage;
   let fixture: ComponentFixture<SignUpPage>;
 

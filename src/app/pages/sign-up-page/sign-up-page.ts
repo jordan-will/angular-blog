@@ -64,7 +64,8 @@ export class SignUpPage implements OnInit {
         id: Date.now().toString(),
         name: this.name?.value,
         email: this.email?.value,
-        profileImage: this.url
+        profileImage: this.url,
+        password: this.password?.value
       }
       const users = this.storage.get('users/') || []
       users.push(user)

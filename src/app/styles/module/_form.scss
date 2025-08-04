@@ -1,3 +1,4 @@
+@use '../base/variables' as v;
 @use './input-mixin' as im;
 @use './btn_icon' as btn;
 
@@ -13,6 +14,8 @@
   form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     padding: 1rem 2rem 3rem;
     width: 100%;
@@ -20,11 +23,21 @@
     // border-radius: 0.5rem;
   }
 
+  &__logo {
+    display: block;
+    width: max-content;
+    font-size: 7rem;
+    color: v.$primary;
+    /* margin: 0 5rem; */
+    margin-bottom: 15px;
+  }
+
   &__group {
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
+    width: 100%;
 
     label {
       font-size: 0.8rem;
@@ -34,20 +47,25 @@
 
     input {
       @include im.input;
+
       &:focus {
-      outline: none; // Remove o estilo padrão
-      border: 2px solid #3498db; 
-      box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); 
-    }
+        outline: none; // Remove o estilo padrão
+        border: 2px solid #3498db;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+      }
     }
   }
 
-  &__icon{
+  &__icon {
     color: #666;
     position: absolute;
     right: 0.5rem;
     bottom: 0.8rem;
     font-size: 1.4rem;
+  }
+
+  &__error{
+    width: 100%;
   }
 
   // &__button {

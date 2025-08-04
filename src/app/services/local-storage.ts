@@ -11,7 +11,7 @@ export class LocalStorage {
   }
 
   get(key: PATH): any {
-    const value = localStorage.getItem('users');
+    const value = localStorage.getItem(key);
     return value ? JSON.parse(value) : null;
   }
 
