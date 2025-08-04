@@ -1,6 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { 
+  Router, 
+  RouterLink, 
+  RouterModule 
+} from '@angular/router';
 import { FormErrorMsg } from '@components/form-error-msg/form-error-msg';
 import { LocalStorage } from '@services/local-storage';
 import { UserService } from '@services/user-service';
@@ -8,13 +12,14 @@ import { User } from 'interfaces/user';
 
 @Component({
   selector: 'app-sign-in-page',
-  imports: [ReactiveFormsModule, FormErrorMsg, RouterLink],
+  imports: [ReactiveFormsModule, FormErrorMsg],
   templateUrl: './sign-in-page.html',
-  styleUrl: './sign-in-page.scss'
+  styleUrl: './sign-in-page.scss',
+  standalone: true
 })
 export class SignInPage implements OnInit {
 
-  private router = inject(Router)
+  public router = inject(Router)
   private localStorage = inject(LocalStorage)
   private userServicce = inject(UserService)
 
