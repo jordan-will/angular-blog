@@ -1,1 +1,1 @@
-export type PATH = 'users/' | 'posts/' | 'comments/';
+export type PATH = 'users/' | 'posts/' | 'comments/' | 'session/';

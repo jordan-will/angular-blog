@@ -1,0 +1,36 @@
+@use '../base/variables' as v;
+
+.sidemenu {
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem;
+  position: fixed;
+  top: 44px;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  transform: translateX(-110%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+
+  ul{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: v.$primary;
+    font-weight: 600;
+    width: 100%;
+
+    li{
+      border-bottom: 0.005rem solid #ccc;
+      padding-bottom: 0.4rem;
+    }
+  }
+
+}
+
+.sidemenuopen {
+  transform: translateX(0);
+}

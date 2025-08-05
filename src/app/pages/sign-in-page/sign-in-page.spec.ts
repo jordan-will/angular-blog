@@ -1,15 +1,14 @@
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignInPage } from './sign-in-page';
 import { provideZonelessChangeDetection } from '@angular/core';
-import { provideRouter, Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { LocalStorage } from '@services/local-storage';
-import { provideLocationMocks } from '@angular/common/testing';
 import { User } from 'interfaces/user';
 import { UserService } from '@services/user-service';
 
 
-fdescribe('SignInPage', () => {
+describe('SignInPage', () => {
   let component: SignInPage;
   let fixture: ComponentFixture<SignInPage>
 
@@ -27,7 +26,7 @@ fdescribe('SignInPage', () => {
 
   beforeEach(async () => {
     routerSpy = jasmine.createSpyObj('Router', ['navigate'])
-    userServiceSpy = jasmine.createSpyObj('UserService', ['setUser'])
+    userServiceSpy = jasmine.createSpyObj('UserService', ['setUser', 'setSession'])
     localStorageSpy = jasmine.createSpyObj('LocalStorage', ['get'])
 
     await TestBed.configureTestingModule({
@@ -106,20 +105,20 @@ fdescribe('SignInPage', () => {
   })
 
   it('should make login when the form is valid', async () => {
-  component.form.setValue({
-    email: 'carlos@email.com',
-    password: '123456'
+    component.form.setValue({
+      email: 'carlos@email.com',
+      password: '123456'
+    });
+
+    await component.login();
+    fixture.detectChanges();
+
+    expect(localStorageSpy.get).toHaveBeenCalledWith('users/');
+    expect(userServiceSpy.setUser).toHaveBeenCalledWith(mockData);
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/home']);
+    expect(component.disabledButton).toBeFalse();
+    expect(component.form.value).toEqual({ email: null, password: null });
   });
-
-  await component.login();
-  fixture.detectChanges();
-
-  expect(localStorageSpy.get).toHaveBeenCalledWith('users/');
-  expect(userServiceSpy.setUser).toHaveBeenCalledWith(mockData);
-  expect(routerSpy.navigate).toHaveBeenCalledWith(['/home']);
-  expect(component.disabledButton).toBeFalse();
-  expect(component.form.value).toEqual({ email: null, password: null });
-});
 
 
 });

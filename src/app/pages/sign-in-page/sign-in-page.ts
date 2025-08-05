@@ -39,7 +39,7 @@ export class SignInPage implements OnInit {
   get email() { return this.form.get('email') }
   get password() { return this.form.get('password') }
 
-  toogleIcon() {
+  toggleIcon() {
     this.formIcon = this.formIcon === "visibility" ? "visibility_off" : "visibility"
     this.typeInput = this.typeInput === "text" ? "password" : "text"
   }
@@ -47,12 +47,16 @@ export class SignInPage implements OnInit {
   login() {
     this.disabledButton = true
     const hasUser = this.getUser(this.email?.value, this.password?.value)
+    console.log('has user', hasUser)
     if (!hasUser) {
       this.disabledButton = false
       return
     }
     console.log('user on login ', hasUser)
+    
     this.userServicce.setUser(hasUser as User)
+    this.userServicce.setSession(hasUser as User)
+
     this.router.navigate(['/home'])
       .then(() => {
         this.disabledButton = false
@@ -63,6 +67,7 @@ export class SignInPage implements OnInit {
 
   getUser(email: string, password: string): boolean | User {
     const user = this.localStorage.get('users/')
+    console.log('user 2', user)
     if (!user) return false
     const userData = user.find((u: any) => u.email === email && u.password === password)
     if (userData === -1) return false

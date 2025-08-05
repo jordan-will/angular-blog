@@ -8,20 +8,20 @@
       <label>Name</label>
       <input type="text" formControlName="name" placeholder="Your name"/>
     </div>
-    <app-form-error [control]="name"></app-form-error>
+    <app-form-error [control]="name" class="form__error"></app-form-error>
 
     <div class="form__group">
       <label>Email</label>
       <input type="email" formControlName="email" placeholder="email@example.com"/>
     </div>
-    <app-form-error [control]="email"></app-form-error>
+    <app-form-error [control]="email" class="form__error"></app-form-error>
 
     <div class="form__group">
       <label>Password</label>
       <input [type]="typeInput" formControlName="password" placeholder="At least 6 characters"/>
-      <span (click)="toogleIcon()" class="material-icons form__icon">{{formIcon}}</span>
+      <span (click)="toggleIcon()" class="material-icons form__icon">{{formIcon}}</span>
     </div>
-    <app-form-error [control]="password"></app-form-error>
+    <app-form-error [control]="password" class="form__error"></app-form-error>
 
     <button class="form__button btn btn--primary" type="submit" [disabled]="!form.valid || disabledButton">Create account</button>
 

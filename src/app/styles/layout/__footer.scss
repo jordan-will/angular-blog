@@ -1,0 +1,36 @@
+@use '../base/variables' as v;
+
+.footer{
+  width: 100%;
+  padding: 1rem;
+  background: v.$surface;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__logo{
+    color: v.$primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  &__socialmedia{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5rem;
+    gap: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  &__copy{
+    padding: 0.5rem 0;
+    font-size: 0.7rem;
+    color: v.$muted;
+  }
+}

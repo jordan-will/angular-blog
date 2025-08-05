@@ -36,7 +36,7 @@ export class SignUpPage implements OnInit {
     })
   }
 
-  toogleIcon() {
+  toggleIcon() {
     this.formIcon = this.formIcon === "visibility" ? "visibility_off" : "visibility"
     this.typeInput = this.typeInput === "text" ? "password" : "text"
   }

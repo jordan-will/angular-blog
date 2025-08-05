@@ -1,0 +1,32 @@
+<div class="header">
+
+  <div class="header__logo" (click)="toggleMenu()">
+    <span class="material-icons" [class.header__hidden]="!isLogged">
+      menu
+    </span>
+    <span class="header__title">Angular Blogger</span>
+  </div>
+
+  <div class="header__nav">
+    <ul>
+      <li>
+        <span (click)="showSearchForm = !showSearchForm" class="material-icons">search</span>
+      </li>
+      <li>
+        <span class="material-icons">person</span>
+      </li>
+    </ul>
+  </div>
+</div>
+@if(showSearchForm)
+{
+<div class="form form--header">
+  <div class="form__group">
+    <input type="text" placeholder="Search by content" />
+  </div>
+  <button class="btn btn--primary">
+    <!-- <span class="material-icons">search</span> -->
+    Search
+  </button>
+</div>
+}

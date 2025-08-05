@@ -1,0 +1,34 @@
+@use '../base/variables' as v;
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem;
+  color: #fff;
+  background-color: v.$primary;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &__nav {
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+  }
+
+  &__hidden{
+    display: none;
+  }
+}

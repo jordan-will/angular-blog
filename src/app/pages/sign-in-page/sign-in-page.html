@@ -16,7 +16,7 @@
     <div class="form__group">
       <label>Password</label>
       <input [type]="typeInput" formControlName="password" placeholder="Your password" />
-      <span (click)="toogleIcon()" class="material-icons form__icon">{{formIcon}}</span>
+      <span (click)="toggleIcon()" class="material-icons form__icon">{{formIcon}}</span>
     </div>
 
     <app-form-error [control]="password" class="form__error"></app-form-error>

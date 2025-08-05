@@ -1,1 +1,10 @@
-<router-outlet />
+<div class="layout">
+  <app-header-component (sideMenu)="onToggleMenu()"></app-header-component>
+  <app-sidemenu-component [isOpen]="isMenuOpen"></app-sidemenu-component>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <app-footer-component></app-footer-component>
+</div>

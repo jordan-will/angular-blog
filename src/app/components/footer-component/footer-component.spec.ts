@@ -1,27 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormErrorMsg } from './form-error-msg';
+import { FooterComponent } from './footer-component';
 import { provideZonelessChangeDetection } from '@angular/core';
 
-describe('FormErrorMsg', () => {
-  let component: FormErrorMsg;
-  let fixture: ComponentFixture<FormErrorMsg>;
+describe('FooterComponent', () => {
+  let component: FooterComponent;
+  let fixture: ComponentFixture<FooterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormErrorMsg],
+      imports: [FooterComponent],
       providers: [
         provideZonelessChangeDetection()
       ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FormErrorMsg);
+    fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(true).toBeTrue();
+    expect(component).toBeTruthy();
   });
 });
