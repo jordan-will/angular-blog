@@ -5,6 +5,8 @@ export interface Post{
   content: string; 
   coverImage?: string;
   authorId: string;
+  authorName:string;
+  authorAvatar:string|null;
 }
 
 export interface Comment {
@@ -12,6 +14,6 @@ export interface Comment {
   id: string;
   content: string;
   authorId: string;
-  profileImage?: string;
+  authorAvatar?: string;
   authorName: string;
 }

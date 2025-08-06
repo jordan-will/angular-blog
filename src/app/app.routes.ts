@@ -3,7 +3,7 @@ import { Home } from '@pages/home/home';
 export const routes: Routes = [
   {
     path:'',
-    redirectTo: '/sign-in',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {

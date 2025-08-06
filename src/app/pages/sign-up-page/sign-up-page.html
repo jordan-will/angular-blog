@@ -1,6 +1,6 @@
 <div class="form">
   
-  <form [formGroup]="form" (ngSubmit)="createUser()">
+  <form class="form__template" [formGroup]="form" (ngSubmit)="createUser()">
   
     <app-avatar [url]="url" (selectedImageEmitter)="updateAvatar($event)"></app-avatar>
     

@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card__cover" [ngStyle]="{'background-image':'url(' + cover() +')'}"></div>
+  <div class="card__author">
+    <div class="card__avatar" [ngStyle]="{'background-image': 'url(' + authorAvatar() + ')'}"></div>
+    <ng-content selector="[card-author]"></ng-content>
+  </div>
+  <div class="card__content">
+    <ng-content select="[card-title]"></ng-content>
+    <ng-content select="[card-description]"></ng-content>
+  </div>
+</div>

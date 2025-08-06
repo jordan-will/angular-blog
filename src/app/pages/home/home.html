@@ -1,1 +1,20 @@
-<p>home works!</p>
+<div class="posts">
+  @if(data.length !== 0)
+  {
+    @for(posts of data; track $index)
+    {
+      <div class="posts__cards">
+        <app-card-component [authorAvatar]="posts.authorAvatar" [cover]="posts.cover">
+          <span card-autthor>{{posts.authorName}}</span>
+          <h2 card-title>{{posts.title}}</h2>
+          <p card-description>{{posts.description}}</p>
+        </app-card-component>
+      </div>
+    }
+  }@else{
+    <div class="posts__msg">
+      No data found for your research
+    </div>
+  }
+
+</div>

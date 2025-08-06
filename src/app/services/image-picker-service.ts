@@ -33,7 +33,6 @@ export class ImagePickerService {
 
       inputHtml.addEventListener('change', listener)
       inputHtml.click()
-
     })
   } 
 

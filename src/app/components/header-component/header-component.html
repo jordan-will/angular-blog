@@ -17,16 +17,17 @@
       </li>
     </ul>
   </div>
+
 </div>
+
 @if(showSearchForm)
 {
-<div class="form form--header">
-  <div class="form__group">
-    <input type="text" placeholder="Search by content" />
-  </div>
-  <button class="btn btn--primary">
-    <!-- <span class="material-icons">search</span> -->
-    Search
-  </button>
-</div>
+  <form class="form form--header" #searchForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form__group">
+      <input type="text" placeholder="Search by content" [(ngModel)]="searchValue" name="searchValue" required />
+    </div>
+    <button class="btn btn--primary" type="submit" [disabled]="!searchForm.valid">
+      Search
+    </button>
+  </form>
 }
