@@ -1,14 +1,22 @@
 import { Routes } from '@angular/router';
 import { Home } from '@pages/home/home';
+import { authGuard } from 'guards/auth-guard';
+import { exitGuard } from 'guards/exit-guard';
 export const routes: Routes = [
   {
     path:'',
-    redirectTo: '/home',
+    redirectTo: '/editor',
     pathMatch: 'full'
   },
   {
     path: 'home',
     component: Home
+  },
+  {
+    path: 'editor',
+    loadComponent: () => import('./pages/editor/editor').then(m => m.Editor),
+    canActivate: [authGuard],
+    canDeactivate: [exitGuard]
   },
   {
     path: 'sign-up',

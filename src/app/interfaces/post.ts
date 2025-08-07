@@ -3,10 +3,10 @@ export interface Post{
   title: string;
   description: string;
   content: string; 
-  coverImage?: string;
+  cover?: string;
   authorId: string;
-  authorName:string;
-  authorAvatar:string|null;
+  // authorName:string;
+  // authorAvatar:string|null;
 }
 
 export interface Comment {

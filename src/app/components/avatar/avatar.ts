@@ -9,9 +9,11 @@ import { ImagePickerService } from '@services/image-picker-service';
   styleUrl: './avatar.scss'
 })
 export class Avatar {
-  url = input<string>()
-  imagePicker = inject(ImagePickerService)
   fileIput = viewChild<ElementRef<HTMLInputElement>>('fileInput')
+
+  url = input<string>()
+  typeMedia = input<'avatar' | 'cover'>('avatar')
+  imagePicker = inject(ImagePickerService)
   selectedImageEmitter = output<string>()
 
   async onSelectImage() {

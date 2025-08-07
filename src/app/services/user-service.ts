@@ -7,6 +7,7 @@ import { LocalStorage } from './local-storage';
   providedIn: 'root'
 })
 export class UserService {
+  
   private localStorageService = inject(LocalStorage)
   private userSubject = new BehaviorSubject<User | null>(null)
   user$ = this.userSubject.asObservable()
@@ -27,5 +28,14 @@ export class UserService {
     const user = this.localStorageService.get('session/')
     if (!user) return
     this.userSubject.next(user)
+  }
+
+  getUserOnSession():User
+  {
+    return this.localStorageService.get('session/') as User
+  }
+
+  isLogged():boolean{
+    return this.userSubject.value !== null
   }
 }

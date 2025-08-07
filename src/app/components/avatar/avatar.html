@@ -2,7 +2,7 @@
   @if(url()){
     <div class="avatar__image" [ngStyle]="{'background-image': 'url(' + url() + ')'}"></div>
   }@else{
-    <span class="material-icons">person</span>
+    <span class="material-icons">{{typeMedia() === 'avatar' ? 'person': 'image'}}</span>
   }
 
   <div class="avatar__actions">
@@ -12,7 +12,7 @@
     <span class="material-icons">image</span>
       image
     </button>
-    <input hidden #fileInput type="file" accept="image/.jpg,.png,.jpeg"/>
+    <input hidden #fileInput type="file" accept=".jpg,.png,.jpeg"/>
   </div>
 
 </div>

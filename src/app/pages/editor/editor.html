@@ -1,0 +1,46 @@
+<div class="editor">
+  <!-- <button class="btn btn--primary" (click)="test()">TESTE</button> -->
+  <h1 class="editor__title">Write your post</h1>
+  <p class="editor__description">
+    Use the editor below to express your ideas, feelings, and inspirations to your followers. 
+    Select text to add styles with our editor.
+  </p>
+  
+  <div class="editor__cover">
+    <app-avatar [typeMedia]="'cover'" (selectedImageEmitter)="setCover($event)"></app-avatar>
+    @if(cover())
+    {
+      <div class="editor__media" [ngStyle]="{'background-image': 'url(' + cover() + ')'}"></div>
+    }
+  </div>
+  
+  <div class="editor__form">
+    <form>
+      <div class="form__group">
+        <input type="text" placeholder="Title" [(ngModel)]="title" name="title"/>
+      </div>
+      <div class="form__group">
+        <textarea rows="3" type="text" placeholder="Description" [(ngModel)]="description" name="description"></textarea>
+      </div>
+    </form>
+  </div>
+
+  <div class="editor__quill">
+    <quill-editor [(ngModel)]="content" name="content" format="json" placeholder="Your ideas here..."></quill-editor>
+  </div>
+
+  <div class="editor__actions">
+    <button class="btn btn--primary" (click)="savePost()">
+      <span class="material-icons">save</span>
+      Save
+    </button>
+
+    <button class="btn btn--secondary" (click)="clearPost()">
+      <span class="material-icons">delete</span>
+      Clear
+    </button>  
+  </div>
+
+</div>
+
+ <!-- <quill-view [content]="post.content" format="json" theme="bubble"></quill-view> -->
