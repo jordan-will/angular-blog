@@ -1,7 +1,7 @@
 <div class="posts">
-  @if(data.length !== 0)
+  @if(data().length !== 0)
   {
-    @for(posts of data; track $index)
+    @for(posts of data(); track $index)
     {
       <div class="posts__cards">
         <app-card-component [authorAvatar]="posts.authorAvatar" [cover]="posts.cover">

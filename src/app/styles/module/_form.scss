@@ -1,6 +1,7 @@
 @use '../base/variables' as v;
 @use './input-mixin' as im;
 @use './btn_icon' as btn;
+@use '../state/fixed-elments' as fe;
 
 .form {
   display: flex;
@@ -21,6 +22,7 @@
     flex-direction: row;
     height: max-content;
     background: #fff;
+    @include fe.fixed-element($top: 44px);
 
     .form__group{
       flex: 8;

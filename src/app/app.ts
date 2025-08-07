@@ -20,15 +20,23 @@ export class App implements OnInit{
   userService = inject(UserService)
   
   protected title = 'Angular Blog';
-  isMenuOpen = false
+  isMenuOpenLeft = false
+  isMenuOpenRight = false
 
   ngOnInit(): void {
     this.userService.getUserFromSession()
   }
 
-  onToggleMenu()
+  onToggleMenu(type: 'left'|'right')
   {
-    this.isMenuOpen = !this.isMenuOpen 
+    if(type == 'left'){
+      this.isMenuOpenLeft = !this.isMenuOpenLeft
+      this.isMenuOpenRight = false
+    }
+    if(type == 'right'){
+      this.isMenuOpenRight = !this.isMenuOpenRight
+      this.isMenuOpenLeft = false
+    }
   }
 
 }

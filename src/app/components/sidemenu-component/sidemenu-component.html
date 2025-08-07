@@ -1,9 +1,23 @@
 <!-- sidemenu.component.html -->
-<div class="sidemenu" [ngClass]="{ 'sidemenu': true, 'sidemenuopen': isOpen() }">
+<div class="sidemenu" [ngClass]="{ 
+    'sidemenu': true, 
+    'sidemenuopen': isOpenLeft() || isOpenRight(), 
+    'sidemenu--right': typeMenu() == 'right',
+    'sidemenu--left': typeMenu() == 'left',
+   }">
   <ul>
-    <li>Home</li>
-    <li>Posts</li>
-    <li>Sobre</li>
-    <li>Contato</li>
+    @if(typeMenu() == 'left')
+    {
+      <li>Home</li>
+      <li>Posts</li>
+      <li>Sobre</li>
+      <li>Contato</li>
+    }@else{
+      <li>Login</li>
+      <li>Profile</li>
+      <li>Settings</li>
+      <li>Logout</li>
+    }
+
   </ul>
 </div>

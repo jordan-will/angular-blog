@@ -1,0 +1,6 @@
+@mixin fixed-element($top: 0px, $left: 0px){
+  position: fixed;
+  top: $top;
+  left: $left;
+  width: 100%;
+}

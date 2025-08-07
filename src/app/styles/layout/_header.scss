@@ -1,4 +1,5 @@
 @use '../base/variables' as v;
+@use '../state/fixed-elments' as fe;
 
 .header {
   display: flex;
@@ -7,6 +8,7 @@
   padding: 0.5rem 0.5rem;
   color: #fff;
   background-color: v.$primary;
+  @include fe.fixed-element();
 
   &__logo {
     display: flex;

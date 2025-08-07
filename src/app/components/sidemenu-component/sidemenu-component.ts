@@ -8,5 +8,7 @@ import { Component, input } from '@angular/core';
   styleUrl: './sidemenu-component.scss'
 })
 export class SidemenuComponent {
-  isOpen = input<boolean>(true)
+  isOpenLeft = input<boolean>(false)
+  isOpenRight = input<boolean>(false)
+  typeMenu = input<'left'|'right'>('right')
 }

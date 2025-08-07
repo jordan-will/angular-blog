@@ -1,6 +1,6 @@
 <div class="header">
 
-  <div class="header__logo" (click)="toggleMenu()">
+  <div class="header__logo" (click)="toggleMenu('left')">
     <span class="material-icons" [class.header__hidden]="!isLogged">
       menu
     </span>
@@ -10,10 +10,10 @@
   <div class="header__nav">
     <ul>
       <li>
-        <span (click)="showSearchForm = !showSearchForm" class="material-icons">search</span>
+        <span (click)="showSearchForm = !showSearchForm" class="material-icons">{{!showSearchForm ? 'search' : 'close'}}</span>
       </li>
       <li>
-        <span class="material-icons">person</span>
+        <span (click)="toggleMenu('right')" class="material-icons">person</span>
       </li>
     </ul>
   </div>
@@ -22,12 +22,5 @@
 
 @if(showSearchForm)
 {
-  <form class="form form--header" #searchForm="ngForm" (ngSubmit)="onSubmit()">
-    <div class="form__group">
-      <input type="text" placeholder="Search by content" [(ngModel)]="searchValue" name="searchValue" required />
-    </div>
-    <button class="btn btn--primary" type="submit" [disabled]="!searchForm.valid">
-      Search
-    </button>
-  </form>
+  <app-header-search></app-header-search>
 }
