@@ -8,6 +8,6 @@ import { Component, input } from '@angular/core';
   styleUrl: './card-component.scss'
 })
 export class CardComponent {
-  cover = input<string>('/images/land.jpg')
-  authorAvatar = input<string>('/images/face.jpg')
+  cover = input<string>()
+  authorAvatar = input<string>()
 }

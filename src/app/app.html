@@ -1,7 +1,15 @@
 <div class="layout">
   <app-header-component (sideMenu)="onToggleMenu($event)"></app-header-component>
-  <app-sidemenu-component [isOpenLeft]="isMenuOpenLeft" [typeMenu]="'left'"></app-sidemenu-component>
-  <app-sidemenu-component [isOpenRight]="isMenuOpenRight" [typeMenu]="'right'"></app-sidemenu-component>
+  <app-sidemenu-component 
+      [isOpenLeft]="isMenuOpenLeft" 
+      [typeMenu]="'left'"
+      (clickedEvent)="menuClicked()"
+      ></app-sidemenu-component>
+  <app-sidemenu-component 
+    [isOpenRight]="isMenuOpenRight" 
+    [typeMenu]="'right'"
+    (clickedEvent)="menuClicked()"
+    ></app-sidemenu-component>
 
   <main class="content">
     <router-outlet></router-outlet>

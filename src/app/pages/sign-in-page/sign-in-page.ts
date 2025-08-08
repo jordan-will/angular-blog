@@ -1,9 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { 
-  Router, 
-  RouterLink, 
-  RouterModule 
+  Router
 } from '@angular/router';
 import { FormErrorMsg } from '@components/form-error-msg/form-error-msg';
 import { LocalStorage } from '@services/local-storage';
@@ -21,7 +19,7 @@ export class SignInPage implements OnInit {
 
   public router = inject(Router)
   private localStorage = inject(LocalStorage)
-  private userServicce = inject(UserService)
+  private userService = inject(UserService)
 
   formBuilder = inject(FormBuilder)
   form!: FormGroup
@@ -54,8 +52,8 @@ export class SignInPage implements OnInit {
     }
     console.log('user on login ', hasUser)
     
-    this.userServicce.setUser(hasUser as User)
-    this.userServicce.setSession(hasUser as User)
+    this.userService.setUser(hasUser as User)
+    this.userService.setSession(hasUser as User)
 
     this.router.navigate(['/home'])
       .then(() => {
@@ -66,10 +64,13 @@ export class SignInPage implements OnInit {
   }
 
   getUser(email: string, password: string): boolean | User {
-    const user = this.localStorage.get('users/')
-    console.log('user 2', user)
-    if (!user) return false
-    const userData = user.find((u: any) => u.email === email && u.password === password)
+    const user = this.localStorage.get('users/') || []
+    const fakeUsers = this.userService.fakeUsers
+    const listUser = [...fakeUsers, ...user]
+    console.log('user 2', listUser)
+    // if (!user) return false
+    const userData = listUser.find((u: User) => u.email === email && u.password === password)
+    console.log(userData, email, password)
     if (userData === -1) return false
     return userData as User
   }

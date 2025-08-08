@@ -5,8 +5,8 @@ export interface Post{
   content: string; 
   cover?: string;
   authorId: string;
-  // authorName:string;
-  // authorAvatar:string|null;
+  authorName?:string;
+  authorAvatar?:string;
 }
 
 export interface Comment {
@@ -14,6 +14,4 @@ export interface Comment {
   id: string;
   content: string;
   authorId: string;
-  authorAvatar?: string;
-  authorName: string;
 }

@@ -65,7 +65,7 @@ export class Editor implements OnInit, OnDestroy, CanComponentDeactivate{
         id: Date.now().toString(),
         title: this.title,
         description: this.description,
-        content: JSON.stringify(this.content),
+        content: this.content,
         // authorAvatar: '',
         authorId: user.id,
         // authorName: user.name,

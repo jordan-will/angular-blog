@@ -15,7 +15,7 @@ export class LocalStorage {
     return value ? JSON.parse(value) : null;
   }
 
-  remove(key: string): void {
+  remove(key: PATH): void {
     localStorage.removeItem(key);
   }
 }

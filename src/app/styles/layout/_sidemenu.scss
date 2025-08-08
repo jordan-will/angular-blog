@@ -2,6 +2,7 @@
 
 .sidemenu {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   padding: 1rem;
   width: 250px;
@@ -14,12 +15,6 @@
 
   position: fixed;
   top: 44px;
-  // left: 0;
-
-  // &--session{
-  //   right: 0;
-  //   transform: translateX(200%);
-  // }
 
   &--left{
     left: 0;
@@ -40,9 +35,54 @@
     font-weight: 600;
     width: 100%;
 
-    li {
-      border-bottom: 0.005rem solid #ccc;
-      padding-bottom: 0.4rem;
+    li{
+      cursor: pointer;
+    }
+
+    // li {
+    //   border-bottom: 0.005rem solid #ccc;
+    //   padding-bottom: 0.4rem;
+    // }
+  }
+
+  &__item{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+
+  &__user{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0.5rem 1.5rem;
+  }
+
+  &__avatar{
+    $size: 60px;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    background-image: url('/images/user.png');
+    // background-color: #eee;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 1px solid #eee;
+  }
+
+  &__info{
+    p{
+      font-size: 1rem;
+      font-weight: bold;
+      margin: 0 !important;
+    }
+    span{
+      font-size: 0.8rem;
+      margin: 0;
     }
   }
 

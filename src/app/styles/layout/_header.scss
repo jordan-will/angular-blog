@@ -10,6 +10,10 @@
   background-color: v.$primary;
   @include fe.fixed-element();
 
+  .material-icons {
+    cursor: pointer;
+  }
+
   &__logo {
     display: flex;
     align-items: center;
@@ -30,7 +34,7 @@
     }
   }
 
-  &__hidden{
+  &__hidden {
     display: none;
   }
 }

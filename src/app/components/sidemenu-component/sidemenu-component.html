@@ -5,18 +5,37 @@
     'sidemenu--right': typeMenu() == 'right',
     'sidemenu--left': typeMenu() == 'left',
    }">
+
+  @if(typeMenu() == 'right')
+  {
+    @if(user){
+      <div class="sidemenu__user">
+        <div class="sidemenu__avatar" [ngStyle]="{'background-image':'url(' + user.profileImage + ')'}"></div>
+        <div class="sidemenu__info">
+          <p>{{user.name}}</p>
+          <span>{{user.email}}</span>
+        </div>
+      </div>
+    }
+  }
+
   <ul>
     @if(typeMenu() == 'left')
     {
-      <li>Home</li>
-      <li>Posts</li>
-      <li>Sobre</li>
-      <li>Contato</li>
+    @for(link of navLinks; track $index)
+    {
+    <li class="sidemenu__item" (click)="handleRouter(link.url)">
+      <span class="material-icons">{{link.icon}}</span>
+      {{link.label}}
+    </li>
+    }
     }@else{
-      <li>Login</li>
-      <li>Profile</li>
-      <li>Settings</li>
-      <li>Logout</li>
+    @for(link of sessionLinks(); track $index){
+    <li class="sidemenu__item" (click)="handleRouter(link.url)">
+      <span class="material-icons">{{link.icon}}</span>
+      {{link.label}}
+    </li>
+    }
     }
 
   </ul>
