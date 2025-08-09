@@ -49,7 +49,6 @@ export class Editor implements OnInit, OnDestroy, CanComponentDeactivate{
   }
 
   savePost(){
-    console.log(this.title, this.description, this.content, this.cover())
     if(
       !this.title ||
       !this.description ||
@@ -71,12 +70,10 @@ export class Editor implements OnInit, OnDestroy, CanComponentDeactivate{
         // authorName: user.name,
         cover: this.cover()
       }
-      console.log(post)
       this.postService.savePost(post)
       this.clearPost()
       this.hasUnsavedChanges = false
       this.router.navigate(['/home'])
-      // alert('Post saved')
   }
 
   clearPost(){

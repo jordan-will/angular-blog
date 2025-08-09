@@ -14,6 +14,7 @@
     cursor: pointer;
   }
 
+
   &__logo {
     display: flex;
     align-items: center;
@@ -26,12 +27,23 @@
   }
 
   &__nav {
-    ul {
+    ul, li {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 0.5rem;
     }
+  }
+
+  &__avatar{
+    $size: 24px;
+    width: $size;
+    height: $size;
+    background-color: #eee;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   &__hidden {

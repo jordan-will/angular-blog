@@ -1,3 +1,7 @@
+@if(message())
+{
+  <app-toast-component [message]="message()!"></app-toast-component>
+}
 <div class="layout">
   <app-header-component (sideMenu)="onToggleMenu($event)"></app-header-component>
   <app-sidemenu-component 

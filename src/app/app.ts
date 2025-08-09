@@ -1,8 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from '@components/footer-component/footer-component';
 import { HeaderComponent } from '@components/header-component/header-component';
 import { SidemenuComponent } from '@components/sidemenu-component/sidemenu-component';
+import { ToastComponent } from '@components/toast-component/toast-component';
+import { NotificationService } from '@services/notification-service';
 import { UserService } from '@services/user-service';
 
 @Component({
@@ -11,13 +13,16 @@ import { UserService } from '@services/user-service';
     RouterOutlet,
     HeaderComponent,
     SidemenuComponent,
-    FooterComponent
+    FooterComponent, 
+    ToastComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App implements OnInit {
   userService = inject(UserService)
+  notificationService = inject(NotificationService)
+  message = signal<string|null>(null);
 
   protected title = 'Angular Blog';
   isMenuOpenLeft = false
@@ -25,6 +30,14 @@ export class App implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUserFromSession()
+    this.notificationService.notification$
+    .subscribe((msg)=>{
+      this.message.set(msg)
+      setTimeout(()=>{
+        // this.notificationService.toast(null)
+        this.message.set(null)
+      }, 2000)
+    })
   }
 
   onToggleMenu(type: 'left' | 'right') {

@@ -27,14 +27,11 @@ export class Post implements OnInit {
     const postId = this.route.snapshot.paramMap.get('id')!
     this.postService.getPostById(postId)
     .subscribe((post)=>{
-      console.log('POST ON READ ', post)
       if(post)
       {
         this.post = post
         this.content = post.content
       }
     })
-    // this.post = this.postService.getPostById(postId)!
-    // this.content = this.post.content//JSON.stringify(this.post.content)
   }
 }

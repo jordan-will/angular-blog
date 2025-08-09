@@ -25,10 +25,4 @@ export class HeaderSearch implements AfterViewInit {
       )
       .subscribe((search) => this.searchService.handleSearch(search));
   }
-
-  // onSubmit() {
-  //   console.log(this.searchValue)
-  //   if (!this.searchValue) return
-  //   this.searchService.handleSearch(this.searchValue)
-  // }
 }

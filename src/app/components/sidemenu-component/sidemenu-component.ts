@@ -52,15 +52,15 @@ export class SidemenuComponent implements OnInit {
 
   handleRouter(url: string) {
     if (url === 'sign_out') {
+      this.clickedEvent.emit()
       this.userService.logOut()
-      // this.handleSessionMenu()
+      return
     }
     this.router.navigate([url])
     this.clickedEvent.emit()
   }
 
   handleSessionMenu(): void {
-    console.log('USER33 ', this.user)
     if (this.user) {
       this.sessionLinks.set(
         [

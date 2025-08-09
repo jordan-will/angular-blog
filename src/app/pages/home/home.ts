@@ -28,20 +28,16 @@ export class Home implements OnInit {
 
     this.postService.getPosts()
     .subscribe((posts)=>{
-      console.log('POSTS  ON HOME ', posts)
       this.data.set(posts)
       this.ctrlData.set(posts)
     })
 
     this.searchValue.search$.subscribe(search => {
-      console.log('search received ', search)
       if (search) {
         this.handleSearch(search)
         return
       }
-
       this.data.set(this.ctrlData())
-
     })
   }
 
@@ -49,9 +45,7 @@ export class Home implements OnInit {
     const data = this.ctrlData().filter((post) => {
       return post.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
         post.description.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-      // post.authorName.toLocaleLowerCase().includes(search.toLocaleLowerCase())
     })
-    console.log('data ', data)
     this.data.set(data)
   }
 

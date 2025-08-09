@@ -10,10 +10,15 @@
   <div class="header__nav">
     <ul>
       <li>
-        <span (click)="showSearchForm = !showSearchForm" class="material-icons">{{!showSearchForm ? 'search' : 'close'}}</span>
+        <span (click)="showSearchForm = !showSearchForm" class="material-icons">{{!showSearchForm ? 'search' :
+          'close'}}</span>
       </li>
       <li>
+        @if(user){
+        <div (click)="toggleMenu('right')" class="header__avatar" [ngStyle]="{'background-image': 'url(' + user.profileImage + ')'}"></div>
+        }@else{
         <span (click)="toggleMenu('right')" class="material-icons">person</span>
+        }
       </li>
     </ul>
   </div>
@@ -22,5 +27,5 @@
 
 @if(showSearchForm)
 {
-  <app-header-search></app-header-search>
+<app-header-search></app-header-search>
 }

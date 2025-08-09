@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Avatar } from '@components/avatar/avatar';
 import { FormErrorMsg } from '@components/form-error-msg/form-error-msg';
 import { LocalStorage } from '@services/local-storage';
+import { NotificationService } from '@services/notification-service';
+import { UserService } from '@services/user-service';
 import { User } from 'interfaces/user';
 
 @Component({
@@ -18,10 +20,13 @@ import { User } from 'interfaces/user';
 })
 export class SignUpPage implements OnInit {
 
+  private router = inject(Router)
+  private useService = inject(UserService)
+  private notificationService = inject(NotificationService)
+
   formBuilder = inject(FormBuilder)
   storage = inject(LocalStorage)
-  private router = inject(Router)
-
+  
   url: string = ''
   form!: FormGroup
   formIcon: "visibility" | "visibility_off" = "visibility"
@@ -54,8 +59,8 @@ export class SignUpPage implements OnInit {
   }
 
   createUser() {
-    console.log(this.form.value)
     if (this.form.invalid) {
+      this.notificationService.toast('Fill out the form correctly')
       return
     }
     this.disabledButton = true
@@ -69,11 +74,16 @@ export class SignUpPage implements OnInit {
       }
       const users = this.storage.get('users/') || []
       users.push(user)
+      
       this.storage.save('users/', users)
-      this.router.navigate(['/sign-in'])
+      this.useService.setUser(user)
+      this.useService.setSession(user)
+      
+      this.router.navigate(['/home'])
         .finally(() => {
           this.disabledButton = false
           this.form.reset()
+          this.notificationService.toast('Account created successfully')
         })
     }
     catch (e) {
@@ -83,7 +93,6 @@ export class SignUpPage implements OnInit {
   }
 
   updateAvatar(string: string) {
-    console.log('Avatar updated with:', string)
     this.url = string
   }
 

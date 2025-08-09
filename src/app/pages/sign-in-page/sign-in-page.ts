@@ -5,6 +5,7 @@ import {
 } from '@angular/router';
 import { FormErrorMsg } from '@components/form-error-msg/form-error-msg';
 import { LocalStorage } from '@services/local-storage';
+import { NotificationService } from '@services/notification-service';
 import { UserService } from '@services/user-service';
 import { User } from 'interfaces/user';
 
@@ -20,6 +21,7 @@ export class SignInPage implements OnInit {
   public router = inject(Router)
   private localStorage = inject(LocalStorage)
   private userService = inject(UserService)
+  private notificationService = inject(NotificationService)
 
   formBuilder = inject(FormBuilder)
   form!: FormGroup
@@ -45,12 +47,11 @@ export class SignInPage implements OnInit {
   login() {
     this.disabledButton = true
     const hasUser = this.getUser(this.email?.value, this.password?.value)
-    console.log('has user', hasUser)
     if (!hasUser) {
+      this.notificationService.toast('Invalid email or password')
       this.disabledButton = false
       return
     }
-    console.log('user on login ', hasUser)
     
     this.userService.setUser(hasUser as User)
     this.userService.setSession(hasUser as User)
@@ -59,19 +60,17 @@ export class SignInPage implements OnInit {
       .then(() => {
         this.disabledButton = false
         this.form.reset()
+        this.notificationService.toast(`Logged as ${hasUser.email}`)
       })
 
   }
 
-  getUser(email: string, password: string): boolean | User {
+  getUser(email: string, password: string): null | User {
     const user = this.localStorage.get('users/') || []
     const fakeUsers = this.userService.fakeUsers
     const listUser = [...fakeUsers, ...user]
-    console.log('user 2', listUser)
-    // if (!user) return false
     const userData = listUser.find((u: User) => u.email === email && u.password === password)
-    console.log(userData, email, password)
-    if (userData === -1) return false
+    if (userData === -1) return null
     return userData as User
   }
 }
