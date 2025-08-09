@@ -8,8 +8,6 @@ describe('LocalStorage', () => {
   let service: LocalStorage;
 
   beforeEach(() => {
-
-
     TestBed.configureTestingModule({
       providers: [
         LocalStorage,

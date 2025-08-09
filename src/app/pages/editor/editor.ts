@@ -66,7 +66,7 @@ export class Editor implements OnInit, OnDestroy, CanComponentDeactivate{
         description: this.description,
         content: this.content,
         // authorAvatar: '',
-        authorId: user.id,
+        authorId: user!.id,
         // authorName: user.name,
         cover: this.cover()
       }

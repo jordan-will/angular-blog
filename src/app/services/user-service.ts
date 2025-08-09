@@ -45,13 +45,12 @@ export class UserService {
 
   getUserFromSession(): void {
     const user = this.localStorageService.get('session/')
-    if (!user) return
-    this.userSubject.next(user)
+    if (user) this.userSubject.next(user) 
   }
 
-  getUserOnSession():User
+  getUserOnSession(): User | null
   {
-    return this.localStorageService.get('session/') as User
+    return this.localStorageService.get('session/') as User || null
   }
 
   isLogged():boolean{
