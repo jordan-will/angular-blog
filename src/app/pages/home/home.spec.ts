@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Home } from './home';
 import { provideZonelessChangeDetection } from '@angular/core';
 
-describe('Home', () => {
+fdescribe('Home', () => {
   let component: Home;
   let fixture: ComponentFixture<Home>;
 

@@ -31,6 +31,10 @@ export class UserService {
     },
   ]
 
+  get fakeUsers():User[]{
+    return this.fakeUsersData
+  }
+
   setUser(user: User) {
     this.userSubject.next(user)
   }
@@ -57,9 +61,6 @@ export class UserService {
     return this.userSubject.value !== null
   }
 
-  get fakeUsers():User[]{
-    return this.fakeUsersData
-  }
 
   logOut(){
     this.userSubject.next(null)

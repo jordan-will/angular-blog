@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { LocalStorage } from '@services/local-storage';
 import { User } from 'interfaces/user';
 import { UserService } from '@services/user-service';
-
+import { NotificationService } from '@services/notification-service';
 
 describe('SignInPage', () => {
   let component: SignInPage;
@@ -15,6 +15,7 @@ describe('SignInPage', () => {
   let routerSpy: jasmine.SpyObj<Router>
   let userServiceSpy: jasmine.SpyObj<UserService>
   let localStorageSpy: jasmine.SpyObj<LocalStorage>
+  let notificationService: NotificationService
 
   const mockData: User = {
     id: '123456',
@@ -26,7 +27,9 @@ describe('SignInPage', () => {
 
   beforeEach(async () => {
     routerSpy = jasmine.createSpyObj('Router', ['navigate'])
-    userServiceSpy = jasmine.createSpyObj('UserService', ['setUser', 'setSession'])
+    userServiceSpy = jasmine.createSpyObj('UserService', ['setUser', 'setSession'], {
+      fakeUsers: [mockData]
+    })
     localStorageSpy = jasmine.createSpyObj('LocalStorage', ['get'])
 
     await TestBed.configureTestingModule({
@@ -35,6 +38,7 @@ describe('SignInPage', () => {
         // RouterLink
       ],
       providers: [
+        NotificationService,
         { provide: LocalStorage, useValue: localStorageSpy },
         { provide: Router, useValue: routerSpy },
         { provide: UserService, useValue: userServiceSpy },
@@ -43,6 +47,9 @@ describe('SignInPage', () => {
         provideZonelessChangeDetection()
       ]
     }).compileComponents();
+
+
+    notificationService = TestBed.inject(NotificationService)
 
     fixture = TestBed.createComponent(SignInPage);
     component = fixture.componentInstance;
@@ -110,8 +117,8 @@ describe('SignInPage', () => {
       password: '123456'
     });
 
-    await component.login();
-    fixture.detectChanges();
+    component.login()
+    await fixture.detectChanges();
 
     expect(localStorageSpy.get).toHaveBeenCalledWith('users/');
     expect(userServiceSpy.setUser).toHaveBeenCalledWith(mockData);
@@ -119,6 +126,37 @@ describe('SignInPage', () => {
     expect(component.disabledButton).toBeFalse();
     expect(component.form.value).toEqual({ email: null, password: null });
   });
+
+  it('should make login and emit notification', (done: DoneFn) => {
+    component.form.setValue({
+      email: 'carlos@email.com',
+      password: '123456'
+    });
+
+    notificationService.notification$.subscribe(msg => {
+      expect(msg).toBe('Logged as carlos@email.com');
+      done();
+    });
+
+    component.login();
+  });
+
+
+  it('should emit notification if no found user', (done: DoneFn) => {
+    component.form.setValue({
+      email: '', password: ''
+    });
+
+    notificationService.notification$.subscribe(msg => {
+      expect(msg).toBe('Invalid email or password');
+      done();
+    });
+
+    component.login();
+    expect(component.disabledButton).toBeFalse()
+  });
+
+
 
 
 });

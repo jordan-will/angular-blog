@@ -1,8 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { 
-  Router
-} from '@angular/router';
+import { Router } from '@angular/router';
 import { FormErrorMsg } from '@components/form-error-msg/form-error-msg';
 import { LocalStorage } from '@services/local-storage';
 import { NotificationService } from '@services/notification-service';
@@ -52,16 +50,15 @@ export class SignInPage implements OnInit {
       this.disabledButton = false
       return
     }
-    
+
     this.userService.setUser(hasUser as User)
     this.userService.setSession(hasUser as User)
 
+    this.disabledButton = false
+    this.form.reset()
+    this.notificationService.toast(`Logged as ${hasUser.email}`)
+
     this.router.navigate(['/home'])
-      .then(() => {
-        this.disabledButton = false
-        this.form.reset()
-        this.notificationService.toast(`Logged as ${hasUser.email}`)
-      })
 
   }
 

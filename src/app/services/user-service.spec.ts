@@ -6,7 +6,7 @@ import { User } from 'interfaces/user';
 import { Router } from '@angular/router';
 import { LocalStorage } from './local-storage';
 
-fdescribe('UserService', () => {
+describe('UserService', () => {
   
   let service: UserService;
   let routerSpy: jasmine.SpyObj<Router>

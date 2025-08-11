@@ -26,7 +26,7 @@ export class SignUpPage implements OnInit {
 
   formBuilder = inject(FormBuilder)
   storage = inject(LocalStorage)
-  
+
   url: string = ''
   form!: FormGroup
   formIcon: "visibility" | "visibility_off" = "visibility"
@@ -64,6 +64,7 @@ export class SignUpPage implements OnInit {
       return
     }
     this.disabledButton = true
+
     try {
       const user: User = {
         id: Date.now().toString(),
@@ -74,21 +75,21 @@ export class SignUpPage implements OnInit {
       }
       const users = this.storage.get('users/') || []
       users.push(user)
-      
-      this.storage.save('users/', users)
+
       this.useService.setUser(user)
       this.useService.setSession(user)
-      
+      this.storage.save('users/', users)
+
+      this.disabledButton = false
+      // this.form.reset()
+      this.notificationService.toast('Account created successfully')
+
       this.router.navigate(['/home'])
-        .finally(() => {
-          this.disabledButton = false
-          this.form.reset()
-          this.notificationService.toast('Account created successfully')
-        })
     }
     catch (e) {
       console.log('Error saving user:', e);
-      this.disabledButton = true
+      this.disabledButton = false
+      this.notificationService.toast('Error on create user. Try again.')
     }
   }
 

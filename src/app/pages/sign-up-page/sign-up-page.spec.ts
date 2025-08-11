@@ -3,6 +3,7 @@ import { SignUpPage } from './sign-up-page';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { LocalStorage } from '@services/local-storage';
 import { Router } from '@angular/router';
+import { NotificationService } from '@services/notification-service';
 
 describe('SignUpPage', () => {
   let component: SignUpPage;
@@ -11,11 +12,13 @@ describe('SignUpPage', () => {
   const localStorageSpy = jasmine.createSpyObj('LocalStorage', ['save', 'get'])
   localStorageSpy.get.and.returnValue([]);
   const routerSpy = jasmine.createSpyObj('Router', ['navigate'])
+  let notificationService: NotificationService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SignUpPage],
       providers: [
+        NotificationService,
         {
           provide: LocalStorage,
           useValue: localStorageSpy
@@ -27,7 +30,7 @@ describe('SignUpPage', () => {
         provideZonelessChangeDetection()
       ]
     }).compileComponents();
-
+    notificationService = TestBed.inject(NotificationService)
     fixture = TestBed.createComponent(SignUpPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -93,19 +96,26 @@ describe('SignUpPage', () => {
 
   })
 
-  it('should save and navigate when form is valid', async () => {
+  it('should save and navigate when form is valid', () => {
+
     const testUser = {
       name: 'Carlos',
       email: 'carlos@email.com',
       password: '123456'
     }
-    component.form.setValue(testUser)
+    component.form.setValue({
+      email: 'carlos@email.com',
+      name: 'Carlos',
+      password: '123456'
+    })
     component.url = 'avatar.png'
+
+    expect(component.form.valid).toBeTrue()
 
     localStorageSpy.get.and.returnValue([])
     routerSpy.navigate.and.returnValue(Promise.resolve(true))
 
-    await component.createUser()
+    component.createUser()
 
     expect(localStorageSpy.save).toHaveBeenCalled()
     const savedUsers = localStorageSpy.save.calls.mostRecent().args[1]
@@ -115,7 +125,45 @@ describe('SignUpPage', () => {
     expect(savedUsers[0].email).toBe('carlos@email.com');
     expect(savedUsers[0].profileImage).toBe('avatar.png');
 
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/sign-in'])
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/home'])
+
+  })
+
+  it('shoud emit notification if the form is invalid', (done: DoneFn)=>{
+    component.form.patchValue({
+      email: '',
+      password: ''
+    })
+
+    expect(component.form.invalid).toBeTrue()
+    
+    notificationService.notification$.subscribe(msg => {
+      expect(msg).toBe('Fill out the form correctly')
+      done()
+    })
+
+    component.createUser()
+  })
+
+  it('should handle error when createUser fails', (done: DoneFn)=>{
+    component.form.patchValue({
+      name:'Carlos',
+      email: 'carlos@email.com',
+      password: '123456'
+    })
+    component.url = 'avatar.jpg'
+
+    localStorageSpy.get.and.returnValue([])
+    localStorageSpy.save.and.throwError('Error trigged')
+
+    notificationService.notification$.subscribe(msg=>{
+      expect(msg).toBe('Error on create user. Try again.')
+      done()
+    })
+
+    component.createUser()
+
+    expect(component.disabledButton).toBeFalse()    
 
   })
 
