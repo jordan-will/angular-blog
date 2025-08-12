@@ -1,11 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { CardComponent } from '@components/card-component/card-component';
-import { FakeData } from '@services/fake-data';
 import { PostsService } from '@services/posts-service';
 import { SearchService } from '@services/search-service';
-import { Card } from 'interfaces/card';
 import { Post } from 'interfaces/post';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +13,7 @@ import { Post } from 'interfaces/post';
   styleUrl: './home.scss'
 })
 export class Home implements OnInit {
-  
+
   private router = inject(Router)
   private postService = inject(PostsService)
   private searchValue = inject(SearchService)
@@ -22,24 +21,39 @@ export class Home implements OnInit {
   data = signal<Post[]>([]);
   ctrlData = signal<Post[]>([])
 
+
   ngOnInit(): void {
-    // this.data.set(this.postService.posts)
-    // this.ctrlData.set(this.postService.posts)
+    combineLatest([
+      this.postService.getPosts(),
+      this.searchValue.search$
+    ]).subscribe(([posts, search]) => {
+      this.ctrlData.set(posts);
 
-    this.postService.getPosts()
-    .subscribe((posts)=>{
-      this.data.set(posts)
-      this.ctrlData.set(posts)
-    })
-
-    this.searchValue.search$.subscribe(search => {
       if (search) {
-        this.handleSearch(search)
-        return
+        this.handleSearch(search);
+      } else {
+        this.data.set(posts);
       }
-      this.data.set(this.ctrlData())
-    })
+    });
   }
+
+
+  // ngOnInit(): void {
+
+  //   this.postService.getPosts()
+  //   .subscribe((posts)=>{
+  //     this.data.set(posts)
+  //     this.ctrlData.set(posts)
+  //   })
+
+  //   this.searchValue.search$.subscribe(search => {
+  //     if (search) {
+  //       this.handleSearch(search)
+  //       return
+  //     }
+  //     this.data.set(this.ctrlData())
+  //   })
+  // }
 
   handleSearch(search: string) {
     const data = this.ctrlData().filter((post) => {
@@ -50,6 +64,6 @@ export class Home implements OnInit {
   }
 
   handlePost(id: string) {
-    this.router.navigate(['/post', id ])
+    this.router.navigate(['/post', id])
   }
 }

@@ -1,7 +1,7 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-import { provideQuillConfig, QuillModules } from 'ngx-quill/config';
+import { provideQuillConfig } from 'ngx-quill/config';
 
 export const appConfig: ApplicationConfig = {
   providers: [

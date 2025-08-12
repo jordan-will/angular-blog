@@ -35,6 +35,11 @@ export class UserService {
     return this.fakeUsersData
   }
 
+  get users():User[]{
+    const usersOnStore = this.localStorageService.get('users/') || []
+    return [...usersOnStore, ...this.fakeUsers]
+  }
+
   setUser(user: User) {
     this.userSubject.next(user)
   }

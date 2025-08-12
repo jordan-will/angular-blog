@@ -1,10 +1,29 @@
+@use '../module/avatar-default' as a;
 .post{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
   // background: red;
+
+  &__info{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+
+    span{
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+  }
+
+  &__avatar{
+    @include a.avatar-default();
+  }
 
   &__cover{
     display: block;

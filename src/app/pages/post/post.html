@@ -1,9 +1,13 @@
 <div class="post">
   @if(post.cover)
   {
-    <div class="post__cover" [ngStyle]="{'background-image': 'url(' + post.cover + ')'}"></div>
+  <div class="post__cover" [ngStyle]="{'background-image': 'url(' + post.cover + ')'}"></div>
   }@else{
-    <div class="post__cover"></div>
+  <div class="post__cover"></div>
   }
+  <div class="post__info">
+    <div class="post__avatar" [ngStyle]="{'background-image': 'url(' + post.authorAvatar + ')'}"></div>
+    <span>{{ post.authorName }}</span>
+  </div>
   <quill-view [content]="content" format="json" theme="bubble"></quill-view>
 </div>

@@ -1,0 +1,12 @@
+@mixin avatar-default(
+  $size: 40px
+) 
+{
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: #eee;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
