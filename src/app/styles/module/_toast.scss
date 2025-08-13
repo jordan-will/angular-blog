@@ -1,11 +1,11 @@
 @use '../base/variables' as v;
 
-.toast{
+.toast {
   z-index: 10000;
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  // position: absolute;
+  // bottom: 1.5rem;
+  // left: 50%;
+  // transform: translateX(-50%);
   width: 100%;
   background-color: v.$secondary;
   color: #fff;
@@ -15,4 +15,11 @@
   border-radius: 0.4rem;
   font-size: 0.7rem;
   text-align: center;
+
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  height: max-content;
 }

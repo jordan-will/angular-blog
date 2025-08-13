@@ -34,7 +34,7 @@ export class App implements OnInit {
     .subscribe((msg)=>{
       this.message.set(msg)
       setTimeout(()=>{
-        // this.notificationService.toast(null)
+        this.notificationService.toast(null)
         this.message.set(null)
       }, 2000)
     })

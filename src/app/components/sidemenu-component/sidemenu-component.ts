@@ -33,7 +33,7 @@ export class SidemenuComponent implements OnInit {
     },
     {
       label: 'Stories',
-      url: '',
+      url: '/my-stories',
       icon: 'book'
     },
   ]

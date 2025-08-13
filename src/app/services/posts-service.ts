@@ -41,10 +41,41 @@ export class PostsService {
     this.storageService.save('posts/', postsList)
   }
 
-  getPostById(id: string): Observable<Post|undefined> {
+  getPostById(id: string): Observable<Post | undefined> {
     const listPost = this.posts
     return from(listPost).pipe(
       find(post => post.id === id)
     )
+  }
+
+  getPostByAuthor(authorId: string) {
+    const listPost = this.posts
+    return of(listPost).pipe(
+      map(posts => posts.filter(post => post.authorId === authorId))
+    )
+  }
+
+  updatePostById(idPost: string, data: Post): boolean {
+    const postList = this.storageService.get('posts/') || []
+    console.log(postList)
+    if (postList.length == 0) return false
+    const post = postList.find((p: Post) => p.id === idPost)
+    console.log(post)
+    if (post === -1) return false
+    const postUpdated = { post, ...data }
+    this.savePost(postUpdated)
+    return true
+  }
+
+  deletePostById(postId: string) {
+    try {
+      const postList = this.storageService.get('posts/') || []
+      const postDeletedList = postList.filter((p: Post) => p.id !== postId)
+      this.storageService.save('posts/', postDeletedList)
+      return true
+    } catch (error) {
+      console.log('error delete post', error)
+      return false
+    }
   }
 }

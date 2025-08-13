@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderSearch } from './header-search';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('HeaderSearch', () => {
   let component: HeaderSearch;
@@ -8,7 +9,10 @@ describe('HeaderSearch', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderSearch]
+      imports: [HeaderSearch],
+      providers: [
+        provideZonelessChangeDetection()
+      ]
     })
     .compileComponents();
 

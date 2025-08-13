@@ -37,7 +37,7 @@ const mockPostsService = {
 };
 
 
-fdescribe('Post', () => {
+describe('Post', () => {
   let component: Post;
   let fixture: ComponentFixture<Post>;
   let element: any;

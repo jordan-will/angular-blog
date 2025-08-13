@@ -5,7 +5,7 @@ import { exitGuard } from 'guards/exit-guard';
 export const routes: Routes = [
   {
     path:'',
-    redirectTo: '/home',
+    redirectTo: '/my-stories',
     pathMatch: 'full'
   },
   {
@@ -14,12 +14,21 @@ export const routes: Routes = [
     title: 'Blogger'
   },
   {
+    path:'my-stories',
+    loadComponent: () => import('./pages/my-stories/my-stories').then(m => m.MyStories)
+  },
+  {
     path: 'post/:id',
     loadComponent: () => import('./pages/post/post').then(m => m.Post),
     title: 'Read'
   },
   {
     path: 'editor',
+    redirectTo: '/editor/null/null',
+    pathMatch: 'full'
+  },
+  {
+    path: 'editor/:idPostEdit/:idAuthorEdit',
     loadComponent: () => import('./pages/editor/editor').then(m => m.Editor),
     title: 'Editor',
     canActivate: [authGuard],

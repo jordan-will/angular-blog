@@ -1,26 +1,29 @@
 <div class="editor">
-  <!-- <button class="btn btn--primary" (click)="test()">TESTE</button> -->
   <h1 class="editor__title">Write your post</h1>
   <p class="editor__description">
-    Use the editor below to express your ideas, feelings, and inspirations to your followers. 
+    Use the editor below to express your ideas, feelings, and inspirations to your followers.
     Select text to add styles with our editor.
   </p>
-  
+
   <div class="editor__cover">
-    <app-avatar [typeMedia]="'cover'" (selectedImageEmitter)="setCover($event)"></app-avatar>
+      <app-avatar [typeMedia]="'cover'" (selectedImageEmitter)="setCover($event)"></app-avatar>
     @if(cover())
     {
       <div class="editor__media" [ngStyle]="{'background-image': 'url(' + cover() + ')'}"></div>
     }
+    @if(idPostEdit()){
+      <button (click)="deletePost()" class="btn btn--primary">Remove Post</button>
+    }
   </div>
-  
+
   <div class="editor__form">
     <form>
       <div class="form__group">
-        <input type="text" placeholder="Title" [(ngModel)]="title" name="title"/>
+        <input type="text" placeholder="Title" [(ngModel)]="title" name="title" />
       </div>
       <div class="form__group">
-        <textarea rows="3" type="text" placeholder="Description" [(ngModel)]="description" name="description"></textarea>
+        <textarea rows="3" type="text" placeholder="Description" [(ngModel)]="description"
+          name="description"></textarea>
       </div>
     </form>
   </div>
@@ -30,7 +33,7 @@
   </div>
 
   <div class="editor__actions">
-    <button class="btn btn--primary" (click)="savePost()">
+    <button class="btn btn--primary" (click)="handlePost()">
       <span class="material-icons">save</span>
       Save
     </button>
@@ -38,8 +41,7 @@
     <button class="btn btn--secondary" (click)="clearPost()">
       <span class="material-icons">delete</span>
       Clear
-    </button>  
+    </button>
   </div>
 
 </div>
-

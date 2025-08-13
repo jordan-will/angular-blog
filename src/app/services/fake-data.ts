@@ -9,7 +9,7 @@ export class FakeData {
 
   private posts: Post[] = [
     {
-      id: '1',
+      id: '198gjd98a',
       title: 'Building Better Habits: A Guide to Lasting Change',
       description: 'Learn how to form habits that stick and transform your daily life.',
       cover: 'images/changes.jpg',
@@ -30,7 +30,7 @@ export class FakeData {
       authorId: '123456'
     },
     {
-      id: '2',
+      id: '2876ddd990',
       title: 'Sunset Cliffs and Soul Searching: Why Nature Heals',
       description: 'Discover how time in nature can restore your mental and emotional balance.',
       cover: 'images/nature.jpg',
@@ -51,7 +51,7 @@ export class FakeData {
       authorId: '654321'
     },
     {
-      id: '3',
+      id: '304ddos009',
       title: 'Mental Wellness: Daily Practices for a Calmer Mind',
       description: 'Simple routines to reduce stress and improve emotional resilience.',
       cover: 'images/mental-healthy.jpg',
@@ -72,7 +72,7 @@ export class FakeData {
       authorId: '123456'
     },
     {
-      id: '5',
+      id: '8793dkd022',
       title: 'The Science of Effective Work Habits',
       description: 'Boost productivity with proven strategies for better focus and time management.',
       cover: 'images/habit.jpg',
@@ -93,7 +93,7 @@ export class FakeData {
       authorId: '654321'
     },
     {
-      id: '6',
+      id: '69873jdks92',
       title: 'Fitness at Home: No Gym Required',
       description: 'Stay active and healthy with simple home workouts and routines.',
       cover: 'images/fitness.jpg',
@@ -114,7 +114,7 @@ export class FakeData {
       authorId: '123456'
     },
     {
-      id: '7',
+      id: '7938392jdks9',
       title: 'Travel Smarter: Tips for Stress-Free Adventures',
       description: 'Make your next trip smoother with these practical travel hacks.',
       cover: 'images/travel.jpg',
@@ -135,7 +135,7 @@ export class FakeData {
       authorId: '654321'
     },
     {
-      id: '8',
+      id: '8377d9d992',
       title: 'Caring for Your Pet: A Guide to Happy Companions',
       description: 'Essential tips for keeping your furry friends healthy and joyful.',
       cover: 'images/pet.jpg',

@@ -1,0 +1,14 @@
+<div class="stories">
+  @if(postList().length !== 0)
+  {
+    @for(post of postList(); track $index){
+      <div class="stories__item" (click)="callEdit(post.id)">
+        <div class="stories__thumbnail" [ngStyle]="{'background-image': 'url(' + post.cover + ')'}"></div>
+        <span class="stories__title">{{post.title}}</span>
+        <span class="material-icons">keyboard_arrow_right</span>
+      </div>
+    }
+  }@else{
+    <span>You don't have any post yet. Create your first post</span>
+  }
+</div>
