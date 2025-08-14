@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Editor } from './editor';
 import { provideZonelessChangeDetection } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '@services/posts-service';
 import { UserService } from '@services/user-service';
 import { NotificationService } from '@services/notification-service';
@@ -10,8 +10,19 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
 import { Avatar } from '@components/avatar/avatar';
+import { of } from 'rxjs';
 
-fdescribe('Editor', () => {
+const activatedRouterMock = {
+  params: of({ idPostEdit: 'null', idAuthorEdit: 'null' }),
+  queryParamns: of({}),
+  snapshot: {
+    paramMap: {
+      get:(key:string) => 'null'
+    }
+  }
+}
+
+describe('Editor', () => {
   let component: Editor
   let fixture: ComponentFixture<Editor>
   let element: any
@@ -33,6 +44,7 @@ fdescribe('Editor', () => {
         FormsModule,
         QuillModule,
         { provide: Router, useValue: routerSpy },
+        {provide: ActivatedRoute, useValue: activatedRouterMock},
         { provide: PostsService, useValue: postServiceSpy },
         { provide: UserService, useValue: userServiceSpy },
         { provide: NotificationService, useValue: notificationServiceSpy },
@@ -107,11 +119,11 @@ fdescribe('Editor', () => {
 
   it('should confirm navigation if there are unsaved changes', () => {
     spyOn(window, 'confirm').and.returnValue(true)
-    component.hasUnsavedChanges = true 
+    component.hasUnsavedChanges = true
     expect(component.canDeactivate()).toBeTrue()
   })
 
-  fit('should allow navigation if there are no unsaved changes', () => {
+  it('should allow navigation if there are no unsaved changes', () => {
     component.hasUnsavedChanges = false
     expect(component.canDeactivate()).toBeTrue()
   })

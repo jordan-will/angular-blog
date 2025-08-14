@@ -1,4 +1,4 @@
-<div class="stories">
+<div class="stories" [ngStyle]="{'padding-top': hasSearch() ? '82px': '1rem'}">
   @if(postList().length !== 0)
   {
     @for(post of postList(); track $index){

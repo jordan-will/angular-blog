@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, output } from '@angular/core';
 import { HeaderSearch } from '@components/header-search/header-search';
+import { SearchService } from '@services/search-service';
 import { UserService } from '@services/user-service';
 import { User } from 'interfaces/user';
 
@@ -15,6 +16,7 @@ import { User } from 'interfaces/user';
 })
 export class HeaderComponent implements OnInit {
   private userService = inject(UserService)
+  private searchService = inject(SearchService)
 
   user!: User | null;
   showSearchForm: boolean = false
@@ -33,6 +35,10 @@ export class HeaderComponent implements OnInit {
     this.sideMenu.emit(type)
   }
 
-
+  toogleSearch()
+  {
+    this.showSearchForm = !this.showSearchForm
+    if(!this.showSearchForm) this.searchService.handleSearch(null)
+  }
 
 }

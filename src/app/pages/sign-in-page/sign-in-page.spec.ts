@@ -141,7 +141,6 @@ describe('SignInPage', () => {
     component.login();
   });
 
-
   it('should emit notification if no found user', (done: DoneFn) => {
     component.form.setValue({
       email: '', password: ''
@@ -155,8 +154,6 @@ describe('SignInPage', () => {
     component.login();
     expect(component.disabledButton).toBeFalse()
   });
-
-
 
 
 });

@@ -5,7 +5,7 @@ import { exitGuard } from 'guards/exit-guard';
 export const routes: Routes = [
   {
     path:'',
-    redirectTo: '/my-stories',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostsService } from '@services/posts-service';
+import { SearchService } from '@services/search-service';
 import { UserService } from '@services/user-service';
 import { Post } from 'interfaces/post';
 import { User } from 'interfaces/user';
@@ -14,12 +15,15 @@ import { User } from 'interfaces/user';
 })
 export class MyStories implements OnInit{
   
+  router = inject(Router)
   userService = inject(UserService)
   postService = inject(PostsService)
-  router = inject(Router)
+  searchService = inject(SearchService)
 
   postList = signal<Post[]>([])
+  postListCtrl = signal<Post[]>([])
   userLogged!:User;
+  hasSearch = signal<boolean>(false)
 
   ngOnInit(): void {
     this.userLogged = this.userService.getUserOnSession()!
@@ -27,7 +31,26 @@ export class MyStories implements OnInit{
     .subscribe(posts => {
       console.log('posts ', posts)
       this.postList.set(posts)
+      this.postListCtrl.set(posts)
     })
+
+    this.searchService.search$.subscribe(search => {
+      if(search){
+        const filteredPosts = this.postListCtrl().filter(post => post.title.toLowerCase().includes(search.toLowerCase()))
+        console.log('filtered posts ', filteredPosts)
+        this.postList.set(filteredPosts)
+        this.hasSearch.set(true)
+      }else{
+        this.postList.set(this.postListCtrl())
+        this.hasSearch.set(false)
+      }
+      // else if(search === ''){
+      //   this.postList.set(this.postListCtrl())
+      // }else{
+      //   this.hasSearch.set(false)
+      // }
+    })
+
   }
 
   callEdit(postId:string){

@@ -64,11 +64,11 @@ export class SidemenuComponent implements OnInit {
     if (this.user) {
       this.sessionLinks.set(
         [
-          {
-            label: 'Settings',
-            url: '/settings',
-            icon: 'settings'
-          },
+          // {
+          //   label: 'Settings',
+          //   url: '/settings',
+          //   icon: 'settings'
+          // },
           {
             label: 'Logout',
             url: 'sign_out',
@@ -83,11 +83,11 @@ export class SidemenuComponent implements OnInit {
             url: '/sign-in',
             icon: 'login'
           },
-          {
-            label: 'Settings',
-            url: '/settings',
-            icon: 'settings'
-          }
+          // {
+          //   label: 'Settings',
+          //   url: '/settings',
+          //   icon: 'settings'
+          // }
         ]
       )
     }  
