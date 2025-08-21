@@ -1,0 +1,1 @@
+import{d as r,v as a}from"./chunk-SAK6RFBY.js";var c=class e{searchSubject=new r("");search$=this.searchSubject.asObservable();handleSearch(t){this.searchSubject.next(t)}static \u0275fac=function(i){return new(i||e)};static \u0275prov=a({token:e,factory:e.\u0275fac,providedIn:"root"})};export{c as a};

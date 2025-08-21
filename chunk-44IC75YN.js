@@ -1,0 +1,1 @@
+import{c as o,v as n}from"./chunk-SAK6RFBY.js";var e=class t{notificationSubject=new o;notification$=this.notificationSubject.asObservable();toast(i){this.notificationSubject.next(i)}static \u0275fac=function(a){return new(a||t)};static \u0275prov=n({token:t,factory:t.\u0275fac,providedIn:"root"})};export{e as a};
