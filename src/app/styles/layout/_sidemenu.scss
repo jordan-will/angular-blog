@@ -72,9 +72,11 @@
     background-size: cover;
     background-repeat: no-repeat;
     border: 1px solid #eee;
+    cursor: pointer;
   }
 
   &__info{
+    cursor: pointer;
     p{
       font-size: 1rem;
       font-weight: bold;

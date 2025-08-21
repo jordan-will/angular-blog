@@ -1,4 +1,5 @@
 @use '../base/variables' as v;
+@use '../base/responsive' as *;
 
 .posts {
   display: flex;
@@ -7,13 +8,45 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 1rem 0.5rem;
-  // padding-top: 3.5rem;
+  // background: orange;
 
-  &__cards{
-    width: 100%;
+  @include respond-to(sm) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  &__msg{
+  @include respond-to(md) {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  @include respond-to(lg) {
+    width: 98%;
+    max-width: 980px;
+    gap: 0.75rem;
+  }
+
+  &__cards {
+    width: 100%;
+
+    @include respond-to(sm) {
+      width: calc(50% - 0.5rem);
+    }
+
+    @include respond-to(lg) {
+      width: 30%;
+    }
+
+    .placeholder {
+      visibility: hidden;
+      width: calc(50% - 0.5rem);
+    }
+
+  }
+
+  &__msg {
     color: v.$primary;
     position: absolute;
     top: 45%;

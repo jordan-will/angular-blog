@@ -1,11 +1,22 @@
 @use '../module/avatar-default' as a;
+@use '../base/responsive' as *;
 .post{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 0.5rem;
-  // background: red;
+
+  @include respond-to(md) {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  @include respond-to(lg) {
+    width: 98%;
+    max-width: 900px;
+  }
 
   &__info{
     display: flex;

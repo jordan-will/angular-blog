@@ -12,7 +12,9 @@
       <div class="editor__media" [ngStyle]="{'background-image': 'url(' + cover() + ')'}"></div>
     }
     @if(idPostEdit()){
-      <button (click)="deletePost()" class="btn btn--primary">Remove Post</button>
+      <div class="editor__delete">
+          <button (click)="deletePost()" class="btn btn--primary">Remove Post</button>
+      </div>
     }
   </div>
 

@@ -1,4 +1,5 @@
 @use './btn_icon' as btn-icon;
+@use '../base/responsive' as *;
 
 .avatar {
   display: flex;
@@ -27,10 +28,17 @@
 
   &__actions {
     width: 100%;
+    // background: red;
+
+    @include respond-to(sm){
+      max-width: 280px;
+    }
+
     button {
       padding: 0.5rem 5rem;
       width: 100%;
     }
+
   }
 
 }

@@ -1,4 +1,6 @@
-.stories{
+@use '../base/responsive' as *;
+
+.stories {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -6,7 +8,18 @@
   // background: red;
   padding: 1rem 0.5rem 0;
 
-  &__item{
+  @include respond-to(md) {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  @include respond-to(lg) {
+    width: 98%;
+    max-width: 900px;
+  }
+
+  &__item {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -14,9 +27,22 @@
     border-bottom: 1px solid #eee;
     margin-bottom: 0.5rem;
     padding-bottom: 0.2rem;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+
+    @include respond-to(sm) {
+      .material-icons {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
   }
 
-  &__thumbnail{
+  &__thumbnail {
     flex: 0 0 auto;
     display: block;
     $size: 60px;
@@ -28,7 +54,7 @@
     background-repeat: no-repeat;
   }
 
-  &__title{
+  &__title {
     flex: 1;
     word-break: break-word;
   }

@@ -25,6 +25,7 @@
 
   &__title {
     font-weight: bold;
+    cursor: pointer;
   }
 
   &__nav {
@@ -45,6 +46,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    cursor: pointer;
   }
 
   &__hidden {

@@ -1,23 +1,26 @@
 <div class="header">
 
-  <div class="header__logo" (click)="toggleMenu('left')">
-    <span class="material-icons" [class.header__hidden]="!isLogged">
+  <div class="header__logo">
+    <span class="material-icons" [class.header__hidden]="!isLogged" (click)="toggleMenu('left')">
       menu
     </span>
-    <span class="header__title">Angular Blogger</span>
+    <span class="header__title" routerLink="/home">Blogger</span>
   </div>
 
   <div class="header__nav">
     <ul>
-      <li>
-        <span (click)="toogleSearch()" class="material-icons">{{!showSearchForm ? 'search' :
-          'close'}}</span>
-      </li>
+      @if(showSearchBtn){
+        <li>
+          <span (click)="toogleSearch()" class="material-icons">{{!showSearchForm ? 'search' :
+            'close'}}</span>
+        </li>
+      }
       <li>
         @if(user){
-        <div (click)="toggleMenu('right')" class="header__avatar" [ngStyle]="{'background-image': 'url(' + user.profileImage + ')'}"></div>
+          <div (click)="toggleMenu('right')" class="header__avatar"
+            [ngStyle]="{'background-image': 'url(' + user.profileImage + ')'}"></div>
         }@else{
-        <span (click)="toggleMenu('right')" class="material-icons">person</span>
+          <span (click)="toggleMenu('right')" class="material-icons">person</span>
         }
       </li>
     </ul>

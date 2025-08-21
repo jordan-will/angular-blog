@@ -1,12 +1,24 @@
 @use '../module/input-mixin' as im;
+@use '../base/responsive' as *;
 
 .editor {
   width: 100%;
   height: 100%;
   padding: 1rem 1rem;
 
-  &__cover{
-    .btn{
+  @include respond-to(md) {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  @include respond-to(lg) {
+    width: 98%;
+    max-width: 900px;
+  }
+
+  &__cover {
+    .btn {
       margin: 0.5rem 0;
     }
   }
@@ -65,6 +77,18 @@
     justify-content: flex-start;
     gap: 0.5rem;
     padding: 1rem 0;
+
+    @include respond-to(lg) {
+      max-width: 50%;
+    }
+
+  }
+
+  &__delete{
+    @include respond-to(sm){
+      width: 50%;
+      max-width: 200px;
+    }
   }
 
 }

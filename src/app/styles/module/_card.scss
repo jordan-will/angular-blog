@@ -1,3 +1,5 @@
+@use '../base/responsive' as *;
+
 .card {
   background-color: #eee;
   display: flex;
@@ -9,6 +11,11 @@
   width: 100%;
   cursor: pointer;
 
+  @include respond-to(sm){
+    height: 300px;
+    justify-content: flex-start;
+  }
+
   &__cover {
     // display: none;
     border-radius: 0.5rem 0.5rem 0 0 ;
@@ -17,6 +24,11 @@
     background-image: url('/images/land.jpg');
     background-size: cover;
     background-position: center;
+
+    @include respond-to(sm){
+      height: 130px;
+    }
+
   }
 
   &__author {
@@ -55,10 +67,20 @@
     h2{
       font-size: 1.5rem;
       font-weight: 500;
+
+      @include respond-to(sm){
+        font-size: 1.2rem;
+      }
+
     }
     p{
       font-size: 1rem;
       font-weight: 500;
+
+       @include respond-to(sm){
+        font-size: 0.9rem;
+      }
+
     }
   }
 
